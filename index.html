@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nicole Show</title>
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+<header>
+  <!-- Topbar -->
+  <div class="topbar py-1 px-3 text-white d-none d-lg-flex justify-content-between bg-dark">
+    <small><i class="fas fa-phone"></i> (11) 99999-0000 | Atendimento: 09h - 18h</small>
+    <div>
+      <a href="./pages/faq.html" class="text-white me-3">Ajuda</a>
+      <a href="/pages/sobreNos.html" class="text-white me-3">Sobre Nós</a>
+      <a href="#" class="text-white">Contato</a>
+    </div>
+  </div>
+
+  <!-- Navbar principal -->
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+    <div class="container-fluid">
+
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="./index.html">
+        <img src="./img/logo.jpeg" alt="Logo Nicole Show" class="logo me-2">
+      </a>
+
+      <!-- Ações no mobile (ficam ao lado do toggler) -->
+      <div class="d-flex d-lg-none align-items-center gap-2 me-2">
+        <button id="btn-carrinho" class="btn-carrinho btn btn-light btn-sm rounded-circle position-relative">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">2</span>
+        </button>
+
+        <button class="btn btn-light btn-sm rounded-circle position-relative" data-bs-toggle="dropdown">
+          <i class="fas fa-bell"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+        </button>
+
+        <button class="btn btn-light btn-sm rounded-circle" data-bs-toggle="dropdown">
+          <i class="fas fa-user"></i>
+        </button>
+      </div>
+
+      <!-- Botão mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu colapsado -->
+      <div class="collapse navbar-collapse" id="menuPrincipal">
+
+        <!-- Categorias -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-3 mt-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorias</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Bolos</a></li>
+              <li><a class="dropdown-item" href="#">Trufas</a></li>
+              <li><a class="dropdown-item" href="#">Brigadeiros</a></li>
+              <li><a class="dropdown-item" href="#">Promoções</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Barra de pesquisa -->
+        <form class="d-flex mx-lg-4 my-3 my-lg-0 flex-grow-1" role="search">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+          <button class="btn btn-light" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+
+        <!-- Ações (somente no desktop) -->
+        <ul class="navbar-nav ms-auto align-items-center gap-2 d-none d-lg-flex">
+          <li class="nav-item position-relative">
+            <button class="btn btn-light rounded-circle">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">2</span>
+</button>
+
+          </li>
+
+          <li class="nav-item dropdown">
+            <button class=" btn-carrinho btn btn-light rounded-circle position-relative" data-bs-toggle="dropdown">
+              <i class="fas fa-bell"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end p-2" style="width: 250px;">
+              <li><strong>Notificações</strong></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item small" href="#">Pedido #123 saiu para entrega</a></li>
+              <li><a class="dropdown-item small" href="#">Novo desconto disponível</a></li>
+              <li><a class="dropdown-item small" href="#">Pagamento confirmado</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <button class="btn btn-light rounded-circle" data-bs-toggle="dropdown">
+              <i class="fas fa-user"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a id="btn-perfil" class="dropdown-item" href="./pages/perfil.html">Meu Perfil</a></li>
+              <li><a id="btn-pedidos" class="dropdown-item" href="#">Meus Pedidos</a></li>
+              <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+    <main class="main-produtos">
+
+      <!-- ================= SLIDER / CAROUSEL ================= -->
+      <section id="carouselBanners" class="carousel slide" data-bs-ride="carousel">
+        <!-- Dots -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#carouselBanners" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="IMG/banner-brigadeiro.png" class="d-block w-100" alt="banner de brigadeiro">
+            <div class="carousel-caption d-none d-md-block">
+              <a href="#brigadeiros" class="btn btn-primary">Ver Brigadeiros</a>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="IMG/banner-barra-chocolate.png" class="d-block w-100" alt="banner de barras de chocolate">
+            <div class="carousel-caption d-none d-md-block">
+              <a href="#chocolates" class="btn btn-primary">Ver Chocolates</a>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="IMG/banner-trufas.png" class="d-block w-100" alt="banner de trufas">
+            <div class="carousel-caption d-none d-md-block">
+              <a href="#trufas" class="btn btn-primary">Ver Trufas</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanners" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselBanners" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Próximo</span>
+        </button>
+      </section>
+
+      <!-- ================= LINKS DE CATEGORIA ================= -->
+      <section class="links-contato text-center my-5">
+        <h3 class="mb-3">Categorias</h3>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="#brigadeiros" class="btn btn-outline-primary">Brigadeiros</a>
+          <a href="#trufas" class="btn btn-outline-primary">Trufas</a>
+          <a href="#chocolates" class="btn btn-outline-primary">Barras de Chocolate</a>
+          <a href="#fitness" class="btn btn-outline-primary">Barras Fitness</a>
+        </div>
+      </section>
+
+<!-- ================= BRIGADEIROS ================= -->
+<section id="brigadeiros" class="container my-5">
+  <h2 class="mb-4">🍫 Brigadeiros</h2>
+  <div class="row g-3">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Brigadeiro Tradicional" data-preco="3.50" data-img="./IMG/brigadeiro.jpg">
+        <img src="./IMG/brigadeiro.jpg" class="card-img-top" alt="Brigadeiro Tradicional">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Brigadeiro Tradicional</h5>
+          <p class="card-text">Clássico doce brasileiro feito com leite condensado e chocolate.</p>
+          <p class="fw-bold mb-3">R$ 3,50</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Brigadeiro Gourmet" data-preco="4.50" data-img="./IMG/brigadeiro-meio-amargo.jpg">
+        <img src="./IMG/brigadeiro-meio-amargo.jpg" class="card-img-top" alt="Brigadeiro Gourmet">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Brigadeiro Gourmet</h5>
+          <p class="card-text">Feito com chocolate premium e ingredientes selecionados.</p>
+          <p class="fw-bold mb-3">R$ 4,50</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Brigadeiro Pistache" data-preco="5.00" data-img="./IMG/brigadeiro-pistach.jpg">
+        <img src="./IMG/brigadeiro-pistach.jpg" class="card-img-top" alt="Brigadeiro Pistache">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Brigadeiro Pistache</h5>
+          <p class="card-text">Sabor exclusivo com pistache selecionado e chocolate branco.</p>
+          <p class="fw-bold mb-3">R$ 5,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Brigadeiro Chocolate Branco" data-preco="4.00" data-img="./IMG/brigadeiro-chocolate-branco.jpg">
+        <img src="./IMG/brigadeiro-chocolate-branco.jpg" class="card-img-top" alt="Brigadeiro Chocolate Branco">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Brigadeiro Chocolate Branco</h5>
+          <p class="card-text">Delicioso brigadeiro feito com chocolate branco cremoso.</p>
+          <p class="fw-bold mb-3">R$ 4,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TRUFAS ================= -->
+<section id="trufas" class="container my-5">
+  <h2 class="mb-4">🍬 Trufas</h2>
+  <div class="row g-3">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Trufa Chocolate Belga" data-preco="6.00" data-img="./IMG/trufa-nutela.jpg">
+        <img src="./IMG/trufa-nutela.jpg" class="card-img-top" alt="Trufa Chocolate Belga">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Trufa Chocolate Belga</h5>
+          <p class="card-text">Trufa rica e cremosa com chocolate belga de alta qualidade.</p>
+          <p class="fw-bold mb-3">R$ 6,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Trufa Nutella" data-preco="6.50" data-img="./IMG/trufa-chocolate.jpg">
+        <img src="./IMG/trufa-chocolate.jpg" class="card-img-top" alt="Trufa Nutella">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Trufa Nutella</h5>
+          <p class="card-text">Deliciosa trufa recheada com creme de Nutella.</p>
+          <p class="fw-bold mb-3">R$ 6,50</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Trufa Maracujá" data-preco="5.50" data-img="./IMG/trufa-maracuja.jpg">
+        <img src="./IMG/trufa-maracuja.jpg" class="card-img-top" alt="Trufa Maracujá">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Trufa Maracujá</h5>
+          <p class="card-text">Sabor tropical e refrescante com creme de maracujá.</p>
+          <p class="fw-bold mb-3">R$ 5,50</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Trufa Café" data-preco="5.50" data-img="./IMG/trufa-meio-amargo.jpg">
+        <img src="./IMG/trufa-meio-amargo.jpg" class="card-img-top" alt="Trufa Café">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Trufa Café</h5>
+          <p class="card-text">Trufa sofisticada com intenso sabor de café.</p>
+          <p class="fw-bold mb-3">R$ 5,50</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= BARRAS DE CHOCOLATE ================= -->
+<section id="chocolates" class="container my-5">
+  <h2 class="mb-4">🍫 Barras de Chocolate</h2>
+  <div class="row g-3">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Chocolate Ao Leite" data-preco="12.00" data-img="./IMG/barra-chocolate-branco.jpg">
+        <img src="./IMG/barra-chocolate-branco.jpg" class="card-img-top" alt="Barra de Chocolate Ao Leite">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Chocolate Ao Leite</h5>
+          <p class="card-text">Clássica barra de chocolate ao leite, cremosa e saborosa.</p>
+          <p class="fw-bold mb-3">R$ 12,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Chocolate Meio Amargo" data-preco="13.00" data-img="./IMG/barra-chocolate.jpg">
+        <img src="./IMG/barra-chocolate.jpg" class="card-img-top" alt="Barra de Chocolate Meio Amargo">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Chocolate Meio Amargo</h5>
+          <p class="card-text">Chocolate intenso, perfeito para quem gosta de amargo 40%.</p>
+          <p class="fw-bold mb-3">R$ 13,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Chocolate Branco" data-preco="12.00" data-img="./IMG/barra-chocolate-branco.jpg">
+        <img src="./IMG/barra-chocolate-branco.jpg" class="card-img-top" alt="Barra de Chocolate Branco">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Chocolate Branco</h5>
+          <p class="card-text">Deliciosa barra de chocolate branco suave e doce.</p>
+          <p class="fw-bold mb-3">R$ 12,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Chocolate com Castanhas" data-preco="14.00" data-img="./IMG/barra-chocolate-amendoin.jpg">
+        <img src="./IMG/barra-chocolate-amendoin.jpg" class="card-img-top" alt="Barra de Chocolate com Castanhas">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Chocolate com Castanhas</h5>
+          <p class="card-text">Chocolate ao leite com crocantes pedaços de castanhas.</p>
+          <p class="fw-bold mb-3">R$ 14,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= BARRAS FITNESS ================= -->
+<section id="fitness" class="container my-5">
+  <h2 class="mb-4">💪 Barras Fitness</h2>
+  <div class="row g-3">
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Proteica Chocolate" data-preco="8.50" data-img="./IMG/barra-fitnis-chocolate.jpg">
+        <img src="./IMG/barra-fitnis-chocolate.jpg" class="card-img-top" alt="Barra Proteica Chocolate">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Proteica Chocolate</h5>
+          <p class="card-text">Barra proteica sabor chocolate, ideal para energia pós-treino.</p>
+          <p class="fw-bold mb-3">R$ 8,50</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Proteica Amendoim" data-preco="8.50" data-img="./IMG/barra-fitnis-amendoin.jpg">
+        <img src="./IMG/barra-fitnis-amendoin.jpg" class="card-img-top" alt="Barra Proteica Amendoim">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Proteica Amendoim</h5>
+          <p class="card-text">Barra de amendoim com proteína, saborosa e nutritiva.</p>
+          <p class="fw-bold mb-3">R$ 8,50</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Proteica Cookies" data-preco="9.00" data-img="./IMG/barra-ftnis-cookies.jpg">
+        <img src="./IMG/barra-ftnis-cookies.jpg" class="card-img-top" alt="Barra Proteica Cookies">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Proteica Cookies</h5>
+          <p class="card-text">Deliciosa barra proteica com sabor de cookies crocantes.</p>
+          <p class="fw-bold mb-3">R$ 9,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card h-100 produto-card" data-nome="Proteica Cacau" data-preco="9.00" data-img="./IMG/barra-fitnis-cacau.jpg">
+        <img src="./IMG/barra-fitnis-cacau.jpg" class="card-img-top" alt="Barra Proteica Cacau">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Proteica Cacau</h5>
+          <p class="card-text">Barra proteica sabor cacau puro, saudável e deliciosa.</p>
+          <p class="fw-bold mb-3">R$ 9,00</p>
+          <button class="btn  mt-auto add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <p>© 2025 Nicole Show. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-container">
+          <h3>Siga-nos</h3>
+          <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.facebook.com" target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://www.linkedin.com" target="_blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Desenvolvido por Gabriel, Versão 0.1</p>
+        </div>
+      </div>
+    </footer>
+ <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Seu script -->
+    <script src="./js/script.js"></script>
+
+  </body>
+</html>

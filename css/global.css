@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+header{
+   background: #570a0d;
+}
+
+main {
+  flex: 1;
+  /* garante que o footer fique no final se a página for pequena */
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 50px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+button{
+  cursor: pointer;
+  border: none;
+  background-color: #430406;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+span{
+  color: black !important;
+}
+
+
+
+strong{
+  color: #151515;
+  font-weight: bold;
+}
+.card-img-top {
+  height: 200px;       /* define a altura */
+  object-fit: cover;   /* mantém a proporção e corta o excesso */
+}
+
+.img-fluid {
+  height: 100px;       /* altura fixa */
+  object-fit: cover;   /* corta sem distorcer */
+  border-radius: 10px;
+}
+
+footer{
+  margin-top: 40px;
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promoções - Logista</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+
+.promo-card{
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom:15px;
+  padding:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:transform 0.2s;
+}
+.promo-card:hover{transform:scale(1.02);}
+.promo-card img{width:60px;height:60px;object-fit:cover;border-radius:8px;margin-right:12px}
+.badge-active{background:#28a745;color:#fff;}
+.badge-inactive{background:#dc3545;color:#fff;}
+#imgPreview{width:100%;height:150px;object-fit:cover;margin-bottom:10px;border-radius:8px;display:none;}
+.footer{background:#222;color:#ddd;padding:20px;text-align:center;margin-top:20px;}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+<nav class="navbar topbar navbar-expand-lg">
+<div class="container-fluid">
+ <a class="navbar-brand" href="../pages/homeLogista.html">
+   <img src="../img/logo.jpeg" alt="logo da Nicole Show" class="logo" width="50">
+ </a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navMain">
+<form class="d-flex mx-auto">
+<input id="searchPromo" class="form-control search-input" type="search" placeholder="Buscar promoções" aria-label="Search">
+</form>
+<ul class="navbar-nav ms-auto">
+  <li class="nav-item">
+    <a class="nav-link text-white" href="./produtos.html">
+      <i class="bi bi-box-seam"></i> Produtos
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-white active" href="./promocoes.html">
+      <i class="bi bi-tag"></i> Promoções
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-white" href="./perfilLogista.html">
+      <i class="bi bi-person-circle"></i>
+    </a>
+  </li>
+</ul>
+
+</div>
+</div>
+</nav>
+</header>
+
+<main>
+<div class="container my-4">
+<div class="row">
+  <!-- Promoções Ativas -->
+  <div class="col-lg-4 mb-4">
+    <h6>Promoções Ativas</h6>
+    <div id="promoList" class="list-group"></div>
+  </div>
+
+  <!-- Nova Promoção -->
+  <div class="col-lg-8">
+    <div class="card p-3">
+      <h6>Nova Promoção</h6>
+      <div class="mb-2">
+        <label>Título</label>
+        <input id="promoTitle" class="form-control"/>
+      </div>
+      <div class="mb-2">
+        <label>Descrição</label>
+        <textarea id="promoDesc" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="mb-2">
+        <label>Categoria</label>
+        <select id="promoCat" class="form-select">
+          <option>Destaque</option>
+          <option>Sazonal</option>
+          <option>Desconto Fixo</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-6 mb-2"><label>Início</label><input id="promoStart" type="date" class="form-control"/></div>
+        <div class="col-6 mb-2"><label>Fim</label><input id="promoEnd" type="date" class="form-control"/></div>
+      </div>
+      <div class="mb-2">
+        <label>% de desconto</label>
+        <input id="promoPercent" type="number" min="0" max="100" class="form-control"/>
+      </div>
+      <div class="mb-2">
+        <label>Imagem (URL ou Upload)</label>
+        <input id="promoImg" class="form-control mb-2" placeholder="https://...">
+        <input id="promoFile" type="file" class="form-control">
+        <img id="imgPreview" alt="Pré-visualização da imagem">
+      </div>
+      <div class="form-check form-switch mb-2">
+        <input class="form-check-input" type="checkbox" id="promoActive" checked>
+        <label class="form-check-label" for="promoActive">Ativa</label>
+      </div>
+      <button id="savePromo" class="btn save-btn"><i class="fas fa-plus me-2"></i>Salvar Promoção</button>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+
+<footer class="footer text-center">
+<div>Desenvolvido por Gabriel Lemos Barbosa</div>
+</footer>
+
+<!-- Toast -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+<div class="toast align-items-center text-bg-success border-0" role="alert" id="successToast">
+<div class="d-flex">
+<div class="toast-body">Promoção salva com sucesso!</div>
+<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Lista inicial
+let promos = [
+  {title:"10% de desconto", desc:"Promoção teste", start:"2025-09-01", end:"2025-09-12", percent:10, img:"", active:true, cat:"Destaque"},
+  {title:"Promoção Aniversário", desc:"Desconto especial", start:"2025-10-01", end:"2025-10-31", percent:15, img:"", active:true, cat:"Sazonal"}
+];
+
+// Renderiza promoções
+function renderPromos(){
+  const container = document.getElementById("promoList");
+  const search = document.getElementById("searchPromo").value.toLowerCase();
+  container.innerHTML='';
+  promos
+    .filter(p=>p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search))
+    .sort((a,b)=> new Date(b.start) - new Date(a.start))
+    .forEach((promo,index)=>{
+      const div = document.createElement("div");
+      div.className="list-group-item promo-card";
+      div.innerHTML = `
+      <div class="d-flex align-items-center">
+        ${promo.img ? `<img src="${promo.img}" alt="${promo.title}">` : ''}
+        <div>
+          <strong>${promo.title}</strong> <span class="badge ${promo.active?'badge-active':'badge-inactive'}">${promo.active?'Ativa':'Inativa'}</span><br>
+          ${promo.start} - ${promo.end} | ${promo.percent}% | <em>${promo.cat}</em>
+        </div>
+      </div>
+      <div>
+        <i class="bi bi-pencil me-2" style="cursor:pointer" onclick="editPromo(${index})"></i>
+        <i class="bi bi-trash text-danger" style="cursor:pointer" onclick="deletePromo(${index})"></i>
+      </div>`;
+      container.appendChild(div);
+  });
+}
+
+// Preview URL
+document.getElementById("promoImg").addEventListener("input", function(){
+  const preview = document.getElementById("imgPreview");
+  const fileInput = document.getElementById("promoFile");
+  if(this.value.trim()!==""){ 
+    preview.src = this.value; 
+    preview.style.display='block';
+    fileInput.value = '';
+  } else { 
+    if(!fileInput.files[0]) preview.style.display='none';
+  }
+});
+
+// Preview Upload
+document.getElementById("promoFile").addEventListener("change", function(){
+  const file = this.files[0];
+  const preview = document.getElementById("imgPreview");
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      preview.src = e.target.result;
+      preview.style.display='block';
+      document.getElementById("promoImg").value='';
+    }
+    reader.readAsDataURL(file);
+  } else {
+    preview.style.display='none';
+  }
+});
+
+// Salvar promoção
+document.getElementById("savePromo").addEventListener("click",()=>{
+  const title = document.getElementById("promoTitle").value.trim();
+  const desc = document.getElementById("promoDesc").value.trim();
+  const start = document.getElementById("promoStart").value;
+  const end = document.getElementById("promoEnd").value;
+  const percent = parseInt(document.getElementById("promoPercent").value);
+  const active = document.getElementById("promoActive").checked;
+  const cat = document.getElementById("promoCat").value;
+
+  let img = '';
+  const fileInput = document.getElementById("promoFile");
+  const urlInput = document.getElementById("promoImg").value.trim();
+  if(fileInput.files[0]){
+    img = document.getElementById("imgPreview").src;
+  } else if(urlInput){
+    img = urlInput;
+  }
+
+  if(!title){ alert("Informe um título"); return; }
+  if(isNaN(percent) || percent<0 || percent>100){ alert("Percentual inválido"); return; }
+
+  promos.push({title, desc, start, end, percent, img, active, cat});
+  renderPromos();
+
+  ["promoTitle","promoDesc","promoStart","promoEnd","promoPercent","promoImg"].forEach(id=>document.getElementById(id).value='');
+  document.getElementById("promoActive").checked=true;
+  document.getElementById("promoFile").value='';
+  document.getElementById("imgPreview").style.display='none';
+
+  const toast = new bootstrap.Toast(document.getElementById("successToast"));
+  toast.show();
+});
+
+// Editar
+function editPromo(index){
+  const p = promos[index];
+  document.getElementById("promoTitle").value=p.title;
+  document.getElementById("promoDesc").value=p.desc;
+  document.getElementById("promoStart").value=p.start;
+  document.getElementById("promoEnd").value=p.end;
+  document.getElementById("promoPercent").value=p.percent;
+  document.getElementById("promoImg").value=p.img;
+  document.getElementById("promoCat").value=p.cat;
+  document.getElementById("promoActive").checked=p.active;
+  if(p.img) document.getElementById("imgPreview").src=p.img;
+  promos.splice(index,1);
+}
+
+// Excluir
+function deletePromo(index){
+  if(confirm("Deseja realmente excluir esta promoção?")){
+    promos.splice(index,1);
+    renderPromos();
+  }
+}
+
+document.getElementById("searchPromo").addEventListener("input", renderPromos);
+
+renderPromos();
+</script>
+</body>
+</html>

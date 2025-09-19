@@ -1,0 +1,20 @@
+/*css global*/ 
+@import "./css/global.css";
+
+/*tela parte de cimda */ 
+@import "./css/header.css";
+
+/*tela de cadastro*/ 
+@import "./css/cadastro.css";
+
+/*tela de home/produtos*/ 
+@import "./css/produto.css";
+
+/*tela de login*/ 
+@import "./css/login.css";
+
+/*tela de perfil*/ 
+@import "./css/perfil.css";
+
+/*footer*/ 
+@import "./css/footer.css";

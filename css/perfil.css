@@ -1,0 +1,32 @@
+
+    /* Foto do usuário */
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ddd;
+    }
+    /* Botões */
+    .btn-danger {
+      background-color: #d90429;
+      border: none;
+    }
+    .btn-danger:hover {
+      background-color: #a3031f;
+    }
+    /* Cards */
+    .card {
+      border-radius: 10px;
+    }
+    /* Métodos de pagamento */
+    .card-payment {
+      background: linear-gradient(135deg, #1a237e, #3949ab);
+      color: #fff;
+      border-radius: 15px;
+      padding: 20px;
+    }
+    .card-payment .card-number {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
